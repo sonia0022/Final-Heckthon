@@ -6,17 +6,17 @@ const hijabData = [
     {
         name: 'Elegant Satin',
         description: 'Smooth satin hijab, perfect for formal events',
-        image: 'https://example.com/images/elegant-satin.jpg',
+        image: '',
     },
     {
         name: 'Casual Cotton',
         description: 'Breathable cotton hijab for everyday use',
-        image: 'https://example.com/images/casual-cotton.jpg',
+        image: '',
     },
     {
         name: 'Sporty Jersey',
         description: 'Comfortable jersey hijab for active wear',
-        image: 'https://example.com/images/sporty-jersey.jpg',
+        image: '',
     },
 ];
 
