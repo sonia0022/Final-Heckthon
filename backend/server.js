@@ -3,6 +3,9 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import connectDB from './database/db.js';
 import authRoutes from './routes/authRoutes.js';
+import hijabRoutes from './routes/style.js'; 
+import reviewRoutes from './routes/review.js'
+
 import cors from 'cors';
 
 // Load environment variables
@@ -13,8 +16,9 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 
-
 app.use('/api/auth', authRoutes);
+app.use('/api/hijabs', hijabRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 
 const PORT = process.env.PORT || 5000;

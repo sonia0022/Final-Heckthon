@@ -57,22 +57,70 @@ const SignIN = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     setMessage('');
+    //     setLoading(true);
+
+    //     try {
+    //         const res = await axios.post('/auth/signin', formData);
+    //         setMessage(res.data.message || "Login successful!");
+    //         localStorage.setItem('token', res.data.token);
+    //         navigate('/dashboard');
+    //     } catch (err) {
+    //         setMessage(err.response?.data?.message || "Invalid credentials");
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage('');
         setLoading(true);
 
+        // try {
+        //     const res = await axios.post('/auth/signin', formData);
+
+        //     setMessage(res.data.message || "Login successful!");
+
+        //     localStorage.setItem('token', res.data.token);
+
+        //     // Save user data for Navbar and other components
+        //     if (res.data.user) {
+        //         localStorage.setItem('loggedInUser', JSON.stringify(res.data.user));
+        //         localStorage.setItem('userRole', res.data.user.role);
+        //     }
+
+        //     navigate('/dashboard');
+        // } catch (err) {
+        //     setMessage(err.response?.data?.message || "Invalid credentials");
+        // }
         try {
             const res = await axios.post('/auth/signin', formData);
+            console.log(res.data);  // <-- Check this output
+
             setMessage(res.data.message || "Login successful!");
             localStorage.setItem('token', res.data.token);
+
+            if (res.data.user) {
+                localStorage.setItem('loggedInUser', JSON.stringify(res.data.user));
+                localStorage.setItem('userRole', res.data.user.role);
+                localStorage.setItem('token', res.data.token);
+
+            }
+
             navigate('/dashboard');
         } catch (err) {
+            console.error('Error:', err); 
             setMessage(err.response?.data?.message || "Invalid credentials");
-        } finally {
+        }
+        finally {
             setLoading(false);
         }
     };
+
+
 
     return (
         <AuthLayout title="Login to Your Account">

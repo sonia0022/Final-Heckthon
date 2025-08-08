@@ -44,14 +44,14 @@ export const signin = async (req, res) => {
         const userWithoutPassword = user.toObject();
         delete userWithoutPassword.password;
 
-        const token = signInToken(user);
-        res.cookie('token', token).json({ message: 'Login successful' });
 
-        res.status(201).json({
-            user: userWithoutPassword,
+        const token = signInToken(user);
+
+        res.status(200).json({
+            message: 'Login successful',
             token,
-            success: true,
-            message: "user logged in successfully!"
+            user: userWithoutPassword,
+            success: true
         });
 
     } catch (error) {

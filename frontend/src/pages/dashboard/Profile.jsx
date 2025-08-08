@@ -1,2 +1,9 @@
-const Profile = () => <h2>User Profile Page</h2>;
-export default Profile;
+import React from 'react'
+
+const Profile = () => {
+  return (
+    <div>Profile</div>
+  )
+}
+
+export default Profile

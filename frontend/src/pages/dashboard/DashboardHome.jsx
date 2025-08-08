@@ -1,2 +1,12 @@
-const DashboardHome = () => <h2>Welcome to the Dashboard</h2>;
-export default DashboardHome;
+import Navbar from '../../components/Navbar'
+import HijabList from './HijabList'
+
+const DashboardHome = () => {
+  return (
+    <div className='p-5'>
+        <HijabList />
+    </div>
+  )
+}
+
+export default DashboardHome
