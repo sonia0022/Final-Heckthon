@@ -77,7 +77,7 @@ function ReviewsList({ hijabId }) {
             console.log("Decoded token:", decoded); // 👈 Debugging
             currentUserId = decoded.userId || decoded._id || decoded.id;
         } catch (e) {
-            console.error("Invalid token");
+            console.error("Invalid token", e);
         }
     }
 
@@ -85,7 +85,7 @@ function ReviewsList({ hijabId }) {
         setLoading(true);
         setError(null);
 
-        axios.get(`http://localhost:5000/api/reviews/${hijabId}`)
+        axios.get(`${import.meta.env.FrontEnd}/api/reviews/${hijabId}`)
             .then(res => {
                 console.log("Fetched reviews:", res.data); // 👈 Debugging
                 setReviews(res.data);
@@ -134,7 +134,7 @@ function ReviewsList({ hijabId }) {
         e.preventDefault();
         try {
             await axios.put(
-                `http://localhost:5000/api/reviews/${editingReviewId}`,
+                `${import.meta.env.FrontEnd}/reviews/${editingReviewId}`,
                 { text: editText, rating: editRating },
                 {
                     headers: {

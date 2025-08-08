@@ -16,10 +16,13 @@ app.use(cors({ origin: process.env.Frontend_URL , credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 
+
 app.use('/api/auth', authRoutes);
 app.use('/api/hijabs', hijabRoutes);
 app.use('/api/reviews', reviewRoutes);
 
+
+app.get("/" )
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

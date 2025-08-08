@@ -1,47 +1,3 @@
-// // src/pages/Signin.jsx
-// import { Link } from 'react-router-dom'; 
-// import AuthLayout from '../../components/AuthLayout';
-
-// const SignIN = () => {
-//     return (
-//         <AuthLayout title="Login to Your Account">
-//             <form className="space-y-4">
-//                 <input
-//                     name="email"
-//                     type="email"
-//                     placeholder="Email"
-//                     className="w-full px-4 py-2 bg-white/10 border border-white/30 rounded-md focus:outline-none"
-//                 />
-//                 <input
-//                     name="password"
-//                     type="password"
-//                     placeholder="Password"
-//                     className="w-full px-4 py-2 bg-white/10 border border-white/30 rounded-md focus:outline-none"
-//                 />
-
-//                 {/* Forgot Password Link */}
-//                 <div className="text-right">
-//                     <Link
-//                         to="/forgot-password"
-//                         className="text-sm text-purple-300 hover:underline"
-//                     >
-//                         Forgot Password?
-//                     </Link>
-//                 </div>
-
-//                 <button
-//                     type="submit"
-//                     className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-md transition cursor-pointer"
-//                 >
-//                     Sign In
-//                 </button>
-//             </form>
-//         </AuthLayout>
-//     );
-// };
-
-// export default SignIN;
-
 import React, { useState } from 'react';
 import axios from '../../api/axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -57,45 +13,11 @@ const SignIN = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     setMessage('');
-    //     setLoading(true);
-
-    //     try {
-    //         const res = await axios.post('/auth/signin', formData);
-    //         setMessage(res.data.message || "Login successful!");
-    //         localStorage.setItem('token', res.data.token);
-    //         navigate('/dashboard');
-    //     } catch (err) {
-    //         setMessage(err.response?.data?.message || "Invalid credentials");
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage('');
         setLoading(true);
 
-        // try {
-        //     const res = await axios.post('/auth/signin', formData);
-
-        //     setMessage(res.data.message || "Login successful!");
-
-        //     localStorage.setItem('token', res.data.token);
-
-        //     // Save user data for Navbar and other components
-        //     if (res.data.user) {
-        //         localStorage.setItem('loggedInUser', JSON.stringify(res.data.user));
-        //         localStorage.setItem('userRole', res.data.user.role);
-        //     }
-
-        //     navigate('/dashboard');
-        // } catch (err) {
-        //     setMessage(err.response?.data?.message || "Invalid credentials");
-        // }
         try {
             const res = await axios.post('/auth/signin', formData);
             console.log(res.data);  // <-- Check this output

@@ -74,10 +74,12 @@ const HijabDetail = () => {
             setLoadingHijab(true);
             setError(null);
             try {
-                const response = await axios.get(`http://localhost:5000/api/hijabs/${id}`);
+                const response = await axios.get(`${import.meta.env.FrontEnd}/api/hijabs/${id}`);
                 setHijab(response.data);
             } catch (error) {
                 setError("Failed to fetch hijab details.");
+                console.log(error);
+                
             } finally {
                 setLoadingHijab(false);
             }
@@ -91,7 +93,7 @@ const HijabDetail = () => {
         const fetchReviews = async () => {
             setLoadingReviews(true);
             try {
-                const res = await axios.get(`http://localhost:5000/api/reviews/${id}`);
+                const res = await axios.get(`${import.meta.env.FrontEnd}/api/reviews/${id}`);
                 setReviews(res.data);
             } catch (error) {
                 console.error("Error fetching reviews", error);
@@ -103,39 +105,7 @@ const HijabDetail = () => {
         if (id) fetchReviews();
     }, [id]);
 
-    // Submit new review
-    // const handleReviewSubmit = async (e) => {
-    //     e.preventDefault();
-    //     if (!token) {
-    //         setError("Please log in to submit a review.");
-    //         return;
-    //     }
-
-    //     setSubmitting(true);
-    //     setError(null);
-
-    //     try {
-    //         await axios.post(
-    //             `http://localhost:5000/api/reviews/${id}`, // id is hijabId
-    //             { text: reviewText, rating: reviewRating } // only text and rating in body
-    //             {
-    //                 headers: {
-    //                     Authorization: `Bearer ${token}`,  // token from localStorage
-    //                 },
-    //             }
-    //         );
-    //         setReviewText("");
-    //         setReviewRating(5);
-
-    //         // Reload reviews after submit
-    //         const updated = await axios.get(`http://localhost:5000/api/reviews/${id}`);
-    //         setReviews(updated.data);
-    //     } catch (err) {
-    //         setError("Failed to submit review. Please try again.");
-    //     } finally {
-    //         setSubmitting(false);
-    //     }
-    // };
+    
     const handleReviewSubmit = async (e) => {
         e.preventDefault();
         if (!token) {
@@ -160,7 +130,7 @@ const HijabDetail = () => {
             setReviewRating(5);
 
             // Reload reviews after submit
-            const updated = await axios.get(`http://localhost:5000/api/reviews/${id}`);
+            const updated = await axios.get(`${import.meta.env.FrontEnd}/api/reviews/${id}`);
             setReviews(updated.data);
         } catch (err) {
             setError("Failed to submit review. Please try again.");

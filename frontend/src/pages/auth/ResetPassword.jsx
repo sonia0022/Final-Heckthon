@@ -18,7 +18,7 @@ const ResetPassword = () => {
         }
 
         try {
-            const res = await fetch(`http://localhost:5000/api/auth/reset-password/${token}`, {
+            const res = await fetch(`${import.meta.env.FrontEnd}/api/auth/reset-password/${token}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
