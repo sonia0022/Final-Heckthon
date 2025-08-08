@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import axios from '../../api/axios';
+// import axios from '../../api/axios';
 import AuthLayout from '../../components/AuthLayout';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUP = () => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
@@ -19,7 +20,7 @@ const SignUP = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('/auth/signup', formData);
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/signup`, formData);
       setMessage(res.data.message || "Signup successful!");
       navigate('/signin')
     } catch (err) {
