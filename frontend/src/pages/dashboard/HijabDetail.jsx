@@ -1,56 +1,3 @@
-// import { useParams } from 'react-router-dom';
-// import axios from 'axios';
-// import { useEffect, useState } from 'react';
-
-// const HijabDetail = () => {
-//     const { id } = useParams();
-//     const [hijab, setHijab] = useState(null);
-//     const [loading, setLoading] = useState(true);
-//     const [error, setError] = useState(null);
-
-//     useEffect(() => {
-//         console.log("Hijab ID from URL:", id);
-//         const fetchHijab = async () => {
-//             setLoading(true);
-//             setError(null);
-//             try {
-//                 const response = await axios.get(`http://localhost:5000/api/hijabs/${id}`);
-//                 console.log("Hijab data:", response.data);
-//                 if (response.data) {
-//                     setHijab(response.data);
-//                 } else {
-//                     setError("Hijab not found.");
-//                 }
-//             } catch (error) {
-//                 console.error('Error fetching hijab:', error);
-//                 setError("Failed to fetch hijab details.");
-//             } finally {
-//                 setLoading(false);
-//             }
-//         };
-
-//         if (id) {
-//             fetchHijab();
-//         } else {
-//             setError("Invalid Hijab ID.");
-//             setLoading(false);
-//         }
-//     }, [id]);
-
-//     if (loading) return <p>Loading hijab details...</p>;
-//     if (error) return <p style={{ color: 'red' }}>{error}</p>;
-
-//     return (
-//         <div className="p-4">
-//             <h1 className="text-3xl font-bold">{hijab.name}</h1>
-//             <img src={hijab.image} alt={hijab.name} className="w-64 mt-4" />
-//             <p className="mt-2 text-gray-700">{hijab.description}</p>
-//             {/* Add more details here if you want */}
-//         </div>
-//     );
-// };
-
-// export default HijabDetail;
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -74,7 +21,7 @@ const HijabDetail = () => {
             setLoadingHijab(true);
             setError(null);
             try {
-                const response = await axios.get(`${import.meta.env.FrontEnd}/api/hijabs/${id}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/hijabs/${id}`);
                 setHijab(response.data);
             } catch (error) {
                 setError("Failed to fetch hijab details.");

@@ -9,7 +9,7 @@ const HijabList = () => {
     useEffect(() => {
         const fetchHijabs = async () => {
             try {
-                const res = await axios.get(`${import.meta.env.FrontEnd}/api/hijabs`);
+                const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/hijabs`);
                 setHijabs(res.data);
             } catch (err) {
                 console.error('Error fetching hijabs:', err);

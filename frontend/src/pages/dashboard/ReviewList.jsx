@@ -1,61 +1,3 @@
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-
-// function ReviewsList({ hijabId }) {
-//     const [reviews, setReviews] = useState([]);
-//     const [loading, setLoading] = useState(true);
-//     const [error, setError] = useState(null);
-
-//     useEffect(() => {
-//         if (!hijabId) return;
-
-//         setLoading(true);
-//         setError(null);
-
-//         axios.get(`http://localhost:5000/api/reviews/${hijabId}`)
-//             .then(res => {
-//                 setReviews(res.data);
-//                 setLoading(false);
-//             })
-//             .catch(err => {
-//                 setError('Failed to load reviews');
-//                 console.error(err);
-//                 setLoading(false);
-//             });
-//     }, [hijabId]);
-
-//     if (loading) return <p>Loading reviews...</p>;
-//     if (error) return <p style={{ color: 'red' }}>{error}</p>;
-//     if (reviews.length === 0) return <p>No reviews for this style yet.</p>;
-
-//     return (
-//         <div>
-//             <h3>Reviews</h3>
-//             {reviews.map((review) => (
-//                 <div
-//                     key={review._id}
-//                     style={{
-//                         border: '1px solid #ccc',
-//                         padding: '10px',
-//                         marginBottom: '10px',
-//                         borderRadius: '5px',
-//                         backgroundColor: '#fafafa'
-//                     }}
-//                 >
-//                     <strong style={{ display: 'block', marginBottom: '5px' }}>
-//                         {review.userId?.name || 'Anonymous'}
-//                     </strong>
-//                     <p style={{ margin: '5px 0' }}>
-//                         Rating: {review.rating} / 5 ⭐
-//                     </p>
-//                     <p style={{ margin: '5px 0' }}>{review.text}</p>
-//                 </div>
-//             ))}
-//         </div>
-//     );
-// }
-
-// export default ReviewsList;
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
@@ -85,7 +27,7 @@ function ReviewsList({ hijabId }) {
         setLoading(true);
         setError(null);
 
-        axios.get(`${import.meta.env.FrontEnd}/api/reviews/${hijabId}`)
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/reviews/${hijabId}`)
             .then(res => {
                 console.log("Fetched reviews:", res.data); // 👈 Debugging
                 setReviews(res.data);
@@ -107,7 +49,7 @@ function ReviewsList({ hijabId }) {
         if (!window.confirm("Are you sure you want to delete this review?")) return;
 
         try {
-            await axios.delete(`http://localhost:5000/api/reviews/${reviewId}`, {
+            await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/reviews/${reviewId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -134,7 +76,7 @@ function ReviewsList({ hijabId }) {
         e.preventDefault();
         try {
             await axios.put(
-                `${import.meta.env.FrontEnd}/reviews/${editingReviewId}`,
+                `${import.meta.env.VITE_API_BASE_URL}/reviews/${editingReviewId}`,
                 { text: editText, rating: editRating },
                 {
                     headers: {
