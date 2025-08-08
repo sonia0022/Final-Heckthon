@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Hijab from './models/hijabStyle.js'; // apne Hijab model ka path sahi kar lena
+import Hijab from './models/hijabStyle.js'; 
 import dotenv from 'dotenv';
 dotenv.config();
 const hijabData = [
