@@ -22,7 +22,7 @@ app.use('/api/hijabs', hijabRoutes);
 app.use('/api/reviews', reviewRoutes);
 
 
-app.get("/" )
+app.get("/", (req, res)=> res.send('Hello') )
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
